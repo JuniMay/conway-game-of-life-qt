@@ -15,3 +15,5 @@ A crappy implementation of Conway's Game of Life in qt.
 - [ ] move mouse to draw
 - [ ] put some members into right position
 - [ ] icons
+- [ ] optimization && improving performance
+- [ ] add other features

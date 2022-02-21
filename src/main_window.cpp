@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
   random_button = new QPushButton("Random", tool_bar);
   configure_button = new QPushButton("Configure", tool_bar);
 
+  evolve_button->setShortcut(Qt::Key_Space);
+
   alive_color_button = new QPushButton(config_box);
   dead_color_button = new QPushButton(config_box);
 
@@ -55,7 +57,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
   menu_bar->addMenu(view_menu);
   menu_bar->addMenu(help_menu);
 
-   tool_bar->setMovable(false);
+  tool_bar->setMovable(false);
   tool_bar->addWidget(configure_button);
   tool_bar->addWidget(random_button);
   tool_bar->addWidget(evolve_button);
