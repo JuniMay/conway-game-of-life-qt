@@ -15,8 +15,10 @@ INCLUDEPATH += ./include
 # Input
 HEADERS += include/common.h \
            include/game_view.h \
+           include/loader.h \
            include/main_window.h \
 
 SOURCES += src/game_view.cpp \
+           src/loader.cpp\
            src/main.cpp \
            src/main_window.cpp

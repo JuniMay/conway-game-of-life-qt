@@ -2,6 +2,7 @@
 #define __GAME_VIEW_H__
 
 #include "common.h"
+#include "loader.h"
 
 class GameView : public QWidget {
   Q_OBJECT
@@ -24,6 +25,8 @@ class GameView : public QWidget {
 
   int get_neighbor_cnt(const int& row_idx, const int& col_idx);
 
+  void load_pattern(LoadInfo& info);
+
  public slots:
   void set_row_cnt(const int& _row_cnt);
   void set_col_cnt(const int& _col_cnt);
@@ -37,8 +40,8 @@ class GameView : public QWidget {
   void update_view();
 
  private:
-  int row_cnt = 25;
-  int col_cnt = 25;
+  int row_cnt = 50;
+  int col_cnt = 50;
   int gen_cnt = 0;
   QColor alive_color = QColor::fromRgb(0xff, 0xff, 0xff);
   QColor dead_color = QColor::fromRgb(0, 0, 0);

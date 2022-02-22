@@ -14,6 +14,7 @@ class MainWindow : public QMainWindow {
   void configure();
   void get_alive_color();
   void get_dead_color();
+  void load_pattern_file();
 
  signals:
   void configure_alive_color(QColor c);
@@ -24,7 +25,6 @@ class MainWindow : public QMainWindow {
  private:
   QWidget *main_widget, *empty;
   QMenuBar *menu_bar;
-  QToolBar *tool_bar;
   QMenu *file_menu, *edit_menu, *view_menu, *help_menu;
   QHBoxLayout *main_layout;
   QGridLayout *config_layout;
@@ -36,6 +36,8 @@ class MainWindow : public QMainWindow {
 
   QPushButton *evolve_button, *reset_button, *random_button, *configure_button,
       *alive_color_button, *dead_color_button;
+
+  QAction *load_pattern_action;
 
   QColor alive_color = QColor::fromRgb(0xff, 0xff, 0xff);
   QColor dead_color = QColor::fromRgb(0, 0, 0);

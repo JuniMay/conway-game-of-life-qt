@@ -6,14 +6,20 @@ A crappy implementation of Conway's Game of Life in qt.
 
 1. make sure qt is well configured
 2. `qmake && make`
+3. open executable file.
+4. click cells to change state.
+5. `configure` button to set color, size, etc.
+6. `evolve` button to evolve (shortcut: press space).
+7. `file->load` to load pattern.
 
 ## Roadmap
 
-- [ ] load pattern from file
+- [x] load pattern from file
+- [ ] save pattern to file
 - [ ] automatically evolve
 - [ ] generate random pattern
 - [ ] move mouse to draw
-- [ ] put some members into right position
 - [ ] icons
 - [ ] optimization && improving performance
+- [ ] put some members into right position
 - [ ] add other features

@@ -93,7 +93,7 @@ void GameView::reset() {
 void GameView::update_view() {}
 
 void GameView::paintEvent(QPaintEvent*) {
-  int cell_size = 20;
+  int cell_size = 10;
 
   QPainter painter(this);
   QRect border(0, 0, col_cnt * cell_size, row_cnt * cell_size);
@@ -121,13 +121,24 @@ void GameView::paintEvent(QPaintEvent*) {
 }
 
 void GameView::mousePressEvent(QMouseEvent* event) {
-  int cell_size = 20;
+  int cell_size = 10;
   int row_idx = (event->pos().y() - 2) / cell_size;
   int col_idx = (event->pos().x() - 2) / cell_size;
   if (gen[row_idx][col_idx] == Alive) {
     gen[row_idx][col_idx] = Dead;
   } else {
     gen[row_idx][col_idx] = Alive;
+  }
+  update();
+}
+
+void GameView::load_pattern(LoadInfo& info) {
+  this->reset();
+  for (int i = info.row_idx; i < info.row_idx + info.row_cnt; i++) {
+    for (int j = info.col_idx; j < info.col_idx + info.col_cnt; j++) {
+      gen[i][j] = info.pattern[i - info.row_idx][j - info.col_idx];
+      prev_gen[i][j] = info.pattern[i - info.row_idx][j - info.col_idx];
+    }
   }
   update();
 }
