@@ -15,6 +15,7 @@ class MainWindow : public QMainWindow {
   void get_alive_color();
   void get_dead_color();
   void load_pattern_file();
+  void save_pattern_file();
 
  signals:
   void configure_alive_color(QColor c);
@@ -37,7 +38,7 @@ class MainWindow : public QMainWindow {
   QPushButton *evolve_button, *reset_button, *random_button, *configure_button,
       *alive_color_button, *dead_color_button;
 
-  QAction *load_pattern_action;
+  QAction *load_pattern_action, *save_pattern_action;
 
   QColor alive_color = QColor::fromRgb(0xff, 0xff, 0xff);
   QColor dead_color = QColor::fromRgb(0, 0, 0);

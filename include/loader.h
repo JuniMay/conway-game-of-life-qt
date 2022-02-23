@@ -10,5 +10,6 @@ struct LoadInfo {
 };
 
 LoadInfo interpret(QFile &file, bool &ok);
+void save_to_file(QFile &file, LoadInfo &info);
 
 #endif

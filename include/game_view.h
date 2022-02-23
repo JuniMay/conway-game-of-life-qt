@@ -7,11 +7,11 @@
 class GameView : public QWidget {
   Q_OBJECT
 
-  Q_PROPERTY(int row_cnt READ get_row_cnt WRITE set_row_cnt)
-  Q_PROPERTY(int col_cnt READ get_col_cnt WRITE set_col_cnt)
-  Q_PROPERTY(QColor alive_color READ get_alive_color WRITE set_alive_color)
-  Q_PROPERTY(QColor dead_color READ get_dead_color WRITE set_dead_color)
-  Q_PROPERTY(int gen_cnt READ get_gen_cnt)
+  //  Q_PROPERTY(int row_cnt READ get_row_cnt WRITE set_row_cnt)
+  //  Q_PROPERTY(int col_cnt READ get_col_cnt WRITE set_col_cnt)
+  //  Q_PROPERTY(QColor alive_color READ get_alive_color WRITE set_alive_color)
+  //  Q_PROPERTY(QColor dead_color READ get_dead_color WRITE set_dead_color)
+  //  Q_PROPERTY(int gen_cnt READ get_gen_cnt)
 
  public:
   explicit GameView(QWidget* parent = nullptr);
@@ -26,6 +26,7 @@ class GameView : public QWidget {
   int get_neighbor_cnt(const int& row_idx, const int& col_idx);
 
   void load_pattern(LoadInfo& info);
+  void save_pattern(LoadInfo& info);
 
  public slots:
   void set_row_cnt(const int& _row_cnt);

@@ -15,7 +15,7 @@ A crappy implementation of Conway's Game of Life in qt.
 ## Roadmap
 
 - [x] load pattern from file
-- [ ] save pattern to file
+- [x] save pattern to file
 - [ ] automatically evolve
 - [ ] generate random pattern
 - [ ] move mouse to draw

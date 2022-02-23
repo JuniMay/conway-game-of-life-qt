@@ -134,6 +134,12 @@ void GameView::mousePressEvent(QMouseEvent* event) {
 
 void GameView::load_pattern(LoadInfo& info) {
   this->reset();
+  if (info.row_idx + info.row_cnt > row_cnt) {
+    set_row_cnt(info.row_idx + info.row_cnt);
+  }
+  if (info.col_idx + info.col_cnt > col_cnt) {
+    set_col_cnt(info.col_idx + info.col_cnt);
+  }
   for (int i = info.row_idx; i < info.row_idx + info.row_cnt; i++) {
     for (int j = info.col_idx; j < info.col_idx + info.col_cnt; j++) {
       gen[i][j] = info.pattern[i - info.row_idx][j - info.col_idx];
@@ -141,4 +147,14 @@ void GameView::load_pattern(LoadInfo& info) {
     }
   }
   update();
+}
+
+void GameView::save_pattern(LoadInfo& info) {
+  info.alive_char = '#';
+  info.dead_char = '.';
+  info.row_idx = 0;
+  info.col_idx = 0;
+  info.row_cnt = row_cnt;
+  info.col_cnt = col_cnt;
+  info.pattern = gen;
 }

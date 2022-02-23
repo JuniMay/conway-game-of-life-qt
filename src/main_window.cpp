@@ -15,7 +15,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
   help_menu = new QMenu("&Help");
 
   load_pattern_action = new QAction("Load", file_menu);
+  save_pattern_action = new QAction("Save", file_menu);
   file_menu->addAction(load_pattern_action);
+  file_menu->addAction(save_pattern_action);
 
   main_layout = new QHBoxLayout(main_widget);
 
@@ -114,6 +116,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
   connect(load_pattern_action, &QAction::triggered, this,
           &MainWindow::load_pattern_file);
+  connect(save_pattern_action, &QAction::triggered, this,
+          &MainWindow::save_pattern_file);
 }
 
 MainWindow::~MainWindow() {
@@ -148,6 +152,9 @@ MainWindow::~MainWindow() {
 
   delete alive_color_button;
   delete dead_color_button;
+
+  delete load_pattern_action;
+  delete save_pattern_action;
 }
 
 void MainWindow::configure() {
@@ -161,10 +168,12 @@ void MainWindow::get_alive_color() {
   alive_color = QColorDialog::getColor();
   alive_color_button->setText(alive_color.name());
 }
+
 void MainWindow::get_dead_color() {
   dead_color = QColorDialog::getColor();
   dead_color_button->setText(dead_color.name());
 }
+
 void MainWindow::load_pattern_file() {
   QStringList path_list =
       QFileDialog::getOpenFileNames(this, tr("Open pattern file"));
@@ -178,4 +187,12 @@ void MainWindow::load_pattern_file() {
   } else {
     game_view->load_pattern(info);
   }
+}
+
+void MainWindow::save_pattern_file() {
+  QString path = QFileDialog::getSaveFileName(this, tr("Save pattern"));
+  LoadInfo info;
+  game_view->save_pattern(info);
+  QFile file(path);
+  save_to_file(file, info);
 }

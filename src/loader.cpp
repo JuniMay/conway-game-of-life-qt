@@ -1,42 +1,65 @@
 #include "loader.h"
 
 LoadInfo interpret(QFile &file, bool &ok) {
-  LoadInfo res = {0, 0, 0, 0, ' ', ' ', Universe()};
+  LoadInfo info = {0, 0, 0, 0, ' ', ' ', Universe()};
   if (!file.exists()) {
     ok = false;
-    return res;
+    return info;
   }
   if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
     ok = false;
-    return res;
+    return info;
   }
   QTextStream pattern_stream(&file);
-  pattern_stream >> res.alive_char;
-  pattern_stream >> res.dead_char;
-  while (res.dead_char == ' ') {
-    pattern_stream >> res.dead_char;
+  pattern_stream >> info.alive_char;
+  pattern_stream >> info.dead_char;
+  while (info.dead_char == ' ') {
+    pattern_stream >> info.dead_char;
   }
-  pattern_stream >> res.row_idx >> res.col_idx >> res.row_cnt >> res.col_cnt;
-  res.pattern = Universe(res.row_cnt, QVector<CellState>(res.col_cnt));
+  pattern_stream >> info.row_idx >> info.col_idx >> info.row_cnt >>
+      info.col_cnt;
+
+  info.pattern = Universe(info.row_cnt, QVector<CellState>(info.col_cnt));
   QChar c;
   int i = 0, j = 0;
-  while (i < res.row_cnt) {
+  while (i < info.row_cnt) {
     pattern_stream >> c;
-    if (c != res.alive_char && c != res.dead_char) {
+    if (c != info.alive_char && c != info.dead_char) {
       continue;
     } else {
-      if (c == res.alive_char) {
-        res.pattern[i][j] = Alive;
+      if (c == info.alive_char) {
+        info.pattern[i][j] = Alive;
       } else {
-        res.pattern[i][j] = Dead;
+        info.pattern[i][j] = Dead;
       }
       j += 1;
-      if (j >= res.col_cnt) {
+      if (j >= info.col_cnt) {
         j = 0;
         i += 1;
       }
     }
   }
   ok = true;
-  return res;
+  file.close();
+  return info;
+}
+
+void save_to_file(QFile &file, LoadInfo &info) {
+  bool ok = file.open(QIODevice::ReadWrite | QIODevice::Text);
+  if (!ok) return;  // TODO: call a MessageBox in MainWindow;
+  QTextStream pattern_stream(&file);
+  pattern_stream << info.alive_char << ' ' << info.dead_char << ' '
+                 << info.row_idx << ' ' << info.col_idx << ' ' << info.row_cnt
+                 << ' ' << info.col_cnt << '\n';
+  for (int i = 0; i < info.row_cnt; i++) {
+    for (int j = 0; j < info.col_cnt; j++) {
+      if (info.pattern[i][j] == Alive) {
+        pattern_stream << info.alive_char;
+      } else {
+        pattern_stream << info.dead_char;
+      }
+    }
+    pattern_stream << '\n';
+  }
+  file.close();
 }
