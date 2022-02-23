@@ -135,6 +135,22 @@ void GameView::mousePressEvent(QMouseEvent* event) {
   int cell_size = 10;
   int row_idx = (event->pos().y() - 2) / cell_size;
   int col_idx = (event->pos().x() - 2) / cell_size;
+  if (row_idx >= row_cnt || col_idx >= col_cnt) return;
+  if (row_idx < 0 || col_idx < 0) return;
+  if (gen[row_idx][col_idx] == Alive) {
+    gen[row_idx][col_idx] = Dead;
+  } else {
+    gen[row_idx][col_idx] = Alive;
+  }
+  update();
+}
+
+void GameView::mouseMoveEvent(QMouseEvent* event) {
+  int cell_size = 10;
+  int row_idx = (event->pos().y() - 2) / cell_size;
+  int col_idx = (event->pos().x() - 2) / cell_size;
+  if (row_idx >= row_cnt || col_idx >= col_cnt) return;
+  if (row_idx < 0 || col_idx < 0) return;
   if (gen[row_idx][col_idx] == Alive) {
     gen[row_idx][col_idx] = Dead;
   } else {

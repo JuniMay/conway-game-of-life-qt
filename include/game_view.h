@@ -51,6 +51,7 @@ class GameView : public QWidget {
  protected:
   void paintEvent(QPaintEvent*);
   void mousePressEvent(QMouseEvent* event);
+  void mouseMoveEvent(QMouseEvent* event);
 };
 
 #endif

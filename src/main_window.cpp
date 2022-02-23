@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
   view_menu = new QMenu("&View");
   help_menu = new QMenu("&Help");
 
-  load_pattern_action = new QAction("Load", file_menu);
-  save_pattern_action = new QAction("Save", file_menu);
+  load_pattern_action = new QAction("Load Pattern", file_menu);
+  save_pattern_action = new QAction("Save Pattern", file_menu);
   file_menu->addAction(load_pattern_action);
   file_menu->addAction(save_pattern_action);
 
@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
   reset_button = new QPushButton("Reset", config_box);
   random_button = new QPushButton("Random", config_box);
   configure_button = new QPushButton("Configure", config_box);
+  quit_button = new QPushButton("Quit", config_box);
 
   evolve_button->setShortcut(Qt::Key_Space);
 
@@ -85,11 +86,12 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
   config_layout->addWidget(height_line_edit, 2, 1);
   config_layout->addWidget(width_label, 3, 0, Qt::AlignRight);
   config_layout->addWidget(width_line_edit, 3, 1);
-  config_layout->addWidget(empty, 4, 0, 1, 2);
-  config_layout->addWidget(configure_button, 5, 0, 1, 2);
+  config_layout->addWidget(configure_button, 4, 0, 1, 2);
+  config_layout->addWidget(empty, 5, 0, 1, 2);
   config_layout->addWidget(evolve_button, 6, 0, 1, 2);
   config_layout->addWidget(random_button, 7, 0, 1, 2);
   config_layout->addWidget(reset_button, 8, 0, 1, 2);
+  config_layout->addWidget(quit_button, 9, 0, 1, 2);
 
   height_line_edit->setText("50");
   width_line_edit->setText("50");
@@ -100,6 +102,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
   connect(configure_button, &QPushButton::clicked, this,
           &MainWindow::configure);
   connect(random_button, &QPushButton::clicked, game_view, &GameView::random);
+  connect(quit_button, &QPushButton::clicked, this, &MainWindow::close);
 
   connect(this, &MainWindow::configure_alive_color, game_view,
           &GameView::set_alive_color);
@@ -153,6 +156,7 @@ MainWindow::~MainWindow() {
 
   delete alive_color_button;
   delete dead_color_button;
+  delete quit_button;
 
   delete load_pattern_action;
   delete save_pattern_action;

@@ -22,7 +22,7 @@ A crappy implementation of Conway's Game of Life in qt.
 - [x] save pattern to file
 - [ ] automatically evolve
 - [x] generate random pattern
-- [ ] move mouse to draw
+- [x] move mouse to draw
 - [ ] icons
 - [ ] optimization && improving performance
 - [ ] put some members into right position

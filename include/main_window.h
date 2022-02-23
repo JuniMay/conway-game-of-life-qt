@@ -36,7 +36,7 @@ class MainWindow : public QMainWindow {
   QLineEdit *height_line_edit, *width_line_edit;
 
   QPushButton *evolve_button, *reset_button, *random_button, *configure_button,
-      *alive_color_button, *dead_color_button;
+      *alive_color_button, *dead_color_button, *quit_button;
 
   QAction *load_pattern_action, *save_pattern_action;
 
