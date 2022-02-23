@@ -38,7 +38,7 @@ class GameView : public QWidget {
   void evolve(const int& n);
   void reset();
 
-  void update_view();
+  void random();
 
  private:
   int row_cnt = 50;

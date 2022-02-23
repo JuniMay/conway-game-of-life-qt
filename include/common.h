@@ -28,6 +28,8 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
+#include <ctime>
+#include <random>
 
 enum CellState {
   Dead = 0,

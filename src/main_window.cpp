@@ -99,6 +99,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
   connect(reset_button, &QPushButton::clicked, game_view, &GameView::reset);
   connect(configure_button, &QPushButton::clicked, this,
           &MainWindow::configure);
+  connect(random_button, &QPushButton::clicked, game_view, &GameView::random);
 
   connect(this, &MainWindow::configure_alive_color, game_view,
           &GameView::set_alive_color);

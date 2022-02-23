@@ -90,7 +90,18 @@ void GameView::reset() {
   update();
 }
 
-void GameView::update_view() {}
+void GameView::random() {
+  std::mt19937 engine(time(0));
+  std::discrete_distribution dist({80, 20});
+  reset();
+  for (int i = 0; i < row_cnt; i++) {
+    for (int j = 0; j < col_cnt; j++) {
+      gen[i][j] = dist(engine) ? Alive : Dead;
+      prev_gen[i][j] = gen[i][j];
+    }
+  }
+  update();
+}
 
 void GameView::paintEvent(QPaintEvent*) {
   int cell_size = 10;

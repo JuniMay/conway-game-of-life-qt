@@ -22,3 +22,4 @@ SOURCES += src/game_view.cpp \
            src/loader.cpp\
            src/main.cpp \
            src/main_window.cpp
+RC_ICONS = images/icon.ico

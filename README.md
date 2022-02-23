@@ -1,5 +1,7 @@
 # Conway's Game of Life in QT
 
+<img title="" src="images/icon.png" alt="" width="200" height="200" align="center" data-align="center">
+
 A crappy implementation of Conway's Game of Life in qt.
 
 ## Usage
@@ -17,7 +19,7 @@ A crappy implementation of Conway's Game of Life in qt.
 - [x] load pattern from file
 - [x] save pattern to file
 - [ ] automatically evolve
-- [ ] generate random pattern
+- [x] generate random pattern
 - [ ] move mouse to draw
 - [ ] icons
 - [ ] optimization && improving performance
